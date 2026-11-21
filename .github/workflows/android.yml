@@ -41,7 +41,7 @@ jobs:
           cargo install cargo-apk --locked
 
       - name: Build APK
-        run: cargo apk build --lib --release --target aarch64-linux-android
+        run: cargo apk build --lib --target aarch64-linux-android
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
