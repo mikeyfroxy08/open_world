@@ -24,18 +24,15 @@ jobs:
           distribution: temurin
           java-version: "21"
 
-            - name: Install Android SDK packages
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android packages
         run: |
           yes | sdkmanager --licenses
           sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.2" "ndk;26.1.10909125"
           echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/26.1.10909125" >> "$GITHUB_ENV"
           echo "ANDROID_NDK_ROOT=$ANDROID_HOME/ndk/26.1.10909125" >> "$GITHUB_ENV"
-
-      - name: Install Android NDK
-        run: |
-          sdkmanager "platforms;android-33" "build-tools;33.0.2" "ndk;26.1.10909125"
-          echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/26.1.10909125" >> $GITHUB_ENV
-          echo "ANDROID_NDK_ROOT=$ANDROID_HOME/ndk/26.1.10909125" >> $GITHUB_ENV
 
       - name: Install Rust
         run: |
@@ -49,6 +46,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Open-World-Android
-          path: target/release/apk/*.apk
+          path: target/**/apk/*.apk
           if-no-files-found: error
           retention-days: 14
