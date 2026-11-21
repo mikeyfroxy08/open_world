@@ -58,7 +58,7 @@ fn setup(
     // Sun
     commands.spawn((
         DirectionalLight {
-            shadows_enabled: false,
+            shadow_maps_enabled: false,
             ..default()
         },
         Transform::from_rotation(
