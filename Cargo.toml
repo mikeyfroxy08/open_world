@@ -1,1 +1,25 @@
 
+[package]
+name = "open_world"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[lib]
+name = "open_world"
+crate-type = ["staticlib", "cdylib"]
+
+[dependencies]
+bevy = { version = "0.19", features = ["android-native-activity"] }
+
+[package.metadata.android]
+package = "com.mikeyfroxy08.openworld"
+apk_name = "open-world"
+label = "Open World"
+build_targets = ["aarch64-linux-android"]
+strip = "strip"
+
+[package.metadata.android.sdk]
+min_sdk_version = 26
+target_sdk_version = 33
+
